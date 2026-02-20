@@ -1,62 +1,82 @@
-📱 Frontend: App de Vulnerabilidad Sísmica (Flutter)
-Esta aplicación móvil permite el registro técnico de edificaciones, integrando geolocalización, captura de imágenes y generación de reportes en PDF.
+# 🏛️ Proyecto Evaluación Sísmica - Frontend
 
-🛠️ Stack Tecnológico
-Framework: Flutter ^3.8.1
+Aplicación móvil multiplataforma desarrollada en **Flutter** para el sistema de gestión de inspecciones sísmicas. Este frontend permite a los inspectores registrar datos técnicos en campo, gestionar edificios evaluados y generar reportes profesionales de vulnerabilidad.
 
-Gestión de Estado: provider (v6.1.1)
+---
 
-Backend as a Service: supabase_flutter (v2.10.0) para base de datos y autenticación.
+<img width="1901" height="942" alt="image" src="https://github.com/user-attachments/assets/c45d6e15-02ea-48f6-b996-e38afc80e3d6" />
 
-📦 Funcionalidades Principales
-📍 Geolocalización: Uso de geolocator y geocoding para ubicar automáticamente la edificación inspeccionada.
 
-📸 Evidencia Visual: Integración de image_picker para capturar fotos del estado estructural.
+## 🏗️ Arquitectura
 
-📄 Reportes Técnicos: Generación y exportación de documentos PDF mediante pdf y printing.
+El proyecto sigue una arquitectura limpia (Clean Architecture) con separación de responsabilidades, facilitando la escalabilidad y el mantenimiento:
 
-🔒 Autenticación Segura: Manejo de sesiones de usuario con Supabase Auth.
 
-💾 Persistencia Local: Uso de shared_preferences para configuraciones rápidas del usuario.
 
-📂 Estructura del Código (lib/)
-El proyecto está organizado de manera modular para facilitar el mantenimiento:
+* **lib/core/**: Contiene la lógica central y configuraciones globales.
+    * **config/**: Configuración de la base de datos y llaves de API (`database_config.dart`).
+    * **constants/**: Endpoints y rutas de la API (`database_endpoints.dart`).
+    * **services/**: Lógica de comunicación con APIs (`auth_service`, `building_service`, `inspection_service`).
+    * **theme/**: Definición de colores y estilos globales (`app_theme.dart`).
+* **lib/data/models/**: Definición de modelos de datos y mapeo de respuestas JSON (`auth_response`, `building_response`).
+* **lib/ui/**: Capa de presentación (UI).
+    * **screens/**: Interfaces de usuario organizadas por flujo (Registro de edificios, Login, Home).
+    * **widgets/**: Componentes reutilizables como botones y campos de texto (`fields.dart`).
 
-core/: Configuración central.
+---
 
-services/: Lógica de servicios (Auth, Geolocalización, Inspección).
+## 🚀 Características
 
-config/ & constants/: Endpoints de la base de datos y configuraciones globales.
+* **Registro Multietapa:** Formulario especializado dividido en 5 fases para una recolección de datos técnicos organizada.
+* **📍 Geolocalización:** Obtención automática de coordenadas GPS y direcciones exactas mediante `geolocator`.
+* **📸 Gestión de Imágenes:** Captura y procesamiento de evidencias fotográficas con `image_picker`.
+* **📄 Reportes Técnicos:** Generación de documentos PDF y gestión de impresión desde la App.
+* **🔐 Autenticación Robusta:** Integración con **Supabase Auth** para manejo de sesiones seguras.
+* **🎨 UI/UX Moderna:** Interfaz diseñada con `google_fonts` y soporte para validación de teléfonos.
 
-data/models/: Definición de objetos de negocio y mapeo de respuestas de la API (auth_response, building_response, etc.).
+---
 
-ui/screens/: Todas las pantallas de la interfaz, incluyendo:
+## 🛠️ Prerrequisitos
 
-Registro de edificios (dividido en 5 etapas para mejor UX).
+* **Flutter:** SDK ^3.8.1
+* **Dart:** ^3.0.0
+* **Backend:** API REST operativa (Node.js) o instancia de Supabase.
 
-Pantallas de administración de perfiles y roles.
+---
 
-Recuperación y reseteo de contraseñas.
+## 📥 Instalación
 
-ui/widgets/: Componentes reutilizables como logos, campos de texto y diálogos de éxito.
+1.  **Clona el repositorio:**
+    ```bash
+    git clone [https://github.com/evaluacionsismica2002-ui/PROYECTO-EVALUACION-SISIMICA-FRONTEND.git](https://github.com/evaluacionsismica2002-ui/PROYECTO-EVALUACION-SISIMICA-FRONTEND.git)
+    cd flutter_application_1
+    ```
 
-🚀 Instalación y Ejecución
-Entrar al directorio:
+2.  **Instala las dependencias:**
+    ```bash
+    flutter pub get
+    ```
 
-PowerShell
-cd flutter_application_1
-Obtener dependencias:
+3.  **Configura el entorno:**
+    Actualiza las credenciales en: `lib/core/config/database_config.dart`
 
-PowerShell
-flutter pub get
-Configurar Assets:
-Asegúrate de que las imágenes base estén en la ruta: assets/images/.
+4.  **Ejecuta la aplicación:**
+    ```bash
+    flutter run
+    ```
 
-Lanzar la App:
+---
 
-PowerShell
-flutter run
-📝 Notas para el Desarrollador
-Diseño: Se utiliza google_fonts y Material Design para una interfaz moderna y legible en campo.
+## 📁 Estructura de Archivos (Proyecto)
 
-Entradas de datos: Se implementó intl_phone_field para asegurar que los números de contacto sean válidos internacionalmente.
+```text
+.
+├── assets/             # Recursos estáticos (Imágenes, Iconos)
+├── android/            # Código nativo Android
+├── ios/                # Código nativo iOS
+├── lib/                # Código fuente Dart
+│   ├── core/           # Servicios y Configuración
+│   ├── data/           # Capa de datos y Modelos
+│   └── ui/             # Pantallas y Widgets
+├── pubspec.yaml        # Gestión de dependencias
+└── README.md           # Documentación del proyecto 
